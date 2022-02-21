@@ -1,0 +1,49 @@
+﻿<Window x:Class="Voditel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Voditel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="#FFE4B5">
+        <StackPanel Grid.Row="1" Background="Beige" Margin="0,0,0,-207">
+            <Button x:Name="ZapExBTN" Content="Посмотреть кондитатов в водители" Click="ZapExBTN_Click" Background="Bisque"></Button>
+            <Button x:Name="Nasbtn" Content="Настройки" Click="Nasbtn_Click" Background="Bisque"></Button>
+            <Button x:Name="DOBDTN" Content="Добавление" Click="DOBDTN_Click" Background="Bisque"></Button>
+            <TextBox x:Name="naitxt"  ></TextBox>
+            <TextBox x:Name="kattxt"></TextBox>
+            <TextBox x:Name="zentxt"></TextBox>
+
+            <ComboBox x:Name="kategtxt" Loaded="kategtxt_Loaded" SelectionChanged="kategtxt_SelectionChanged" >
+
+            </ComboBox>
+
+
+
+            <Button x:Name="upBTN" Content="Обновление" Click="upBTN_Click" ></Button>
+            <Button x:Name="DelDTN" Content="Удаление" Click="DelDTN_Click"></Button>
+            <Button x:Name="Exitbtn" Content="Выход" Click="Exitbtn_Click" Background="Bisque"></Button>
+        </StackPanel>
+
+        <DataGrid x:Name="myDataGrid" Grid.Column="1" Grid.Row="2" AutoGenerateColumns="False"  VerticalAlignment="Top" Width="350" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}"  ></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Имя}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Дата_рождения}"  ></DataGridTextColumn>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Категория}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Дата}" ></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Background="BurlyWood" Grid.ColumnSpan="2"></Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="100" ></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions >
+
+    </Grid>
+</Window>

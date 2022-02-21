@@ -1,0 +1,7 @@
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\Voditel.csproj.AssemblyReference.cache
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\Voditel.csproj.SuggestedBindingRedirects.cache
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\MainWindow.g.cs
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\Talon.g.cs
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\App.g.cs
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\Voditel_MarkupCompile.cache
+C:\Users\tonig\OneDrive\Рабочий стол\vod-main\Voditel\obj\Debug\Voditel_MarkupCompile.lref

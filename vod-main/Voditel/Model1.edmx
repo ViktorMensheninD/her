@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище voditModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DateTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="examiners">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="nchar" MaxLength="10" />
+          <Property Name="lustname" Type="nchar" MaxLength="10" />
+          <Property Name="login" Type="nchar" MaxLength="10" />
+          <Property Name="password" Type="nchar" MaxLength="10" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="information_about_applicants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="lustname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="databorn" Type="int" Nullable="false" />
+          <Property Name="kategory" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="dataex" Type="int" Nullable="false" />
+          <Property Name="datetimeid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_information_about_applicants_DateTime">
+          <End Role="DateTime" Type="Self.DateTime" Multiplicity="1" />
+          <End Role="information_about_applicants" Type="Self.information_about_applicants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DateTime">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="information_about_applicants">
+              <PropertyRef Name="datetimeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище voditModelContainer">
+          <EntitySet Name="DateTime" EntityType="Self.DateTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="examiners" EntityType="Self.examiners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="information_about_applicants" EntityType="Self.information_about_applicants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_information_about_applicants_DateTime" Association="Self.FK_information_about_applicants_DateTime">
+            <End Role="DateTime" EntitySet="DateTime" />
+            <End Role="information_about_applicants" EntitySet="information_about_applicants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="voditModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DateTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="information_about_applicants" Relationship="Self.FK_information_about_applicants_DateTime" FromRole="DateTime" ToRole="information_about_applicants" />
+        </EntityType>
+        <EntityType Name="examiners">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="lustname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="information_about_applicants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="lustname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="databorn" Type="Int32" Nullable="false" />
+          <Property Name="kategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="dataex" Type="Int32" Nullable="false" />
+          <Property Name="datetimeid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DateTime" Relationship="Self.FK_information_about_applicants_DateTime" FromRole="information_about_applicants" ToRole="DateTime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_information_about_applicants_DateTime">
+          <End Role="DateTime" Type="Self.DateTime" Multiplicity="1" />
+          <End Role="information_about_applicants" Type="Self.information_about_applicants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DateTime">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="information_about_applicants">
+              <PropertyRef Name="datetimeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="voditEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DateTime" EntityType="Self.DateTime" />
+          <EntitySet Name="examiners" EntityType="Self.examiners" />
+          <EntitySet Name="information_about_applicants" EntityType="Self.information_about_applicants" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_information_about_applicants_DateTime" Association="Self.FK_information_about_applicants_DateTime">
+            <End Role="DateTime" EntitySet="DateTime" />
+            <End Role="information_about_applicants" EntitySet="information_about_applicants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище voditModelContainer" CdmEntityContainer="voditEntities">
+          <EntitySetMapping Name="DateTime">
+            <EntityTypeMapping TypeName="voditModel.DateTime">
+              <MappingFragment StoreEntitySet="DateTime">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="examiners">
+            <EntityTypeMapping TypeName="voditModel.examiners">
+              <MappingFragment StoreEntitySet="examiners">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lustname" ColumnName="lustname" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="information_about_applicants">
+            <EntityTypeMapping TypeName="voditModel.information_about_applicants">
+              <MappingFragment StoreEntitySet="information_about_applicants">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lustname" ColumnName="lustname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="databorn" ColumnName="databorn" />
+                <ScalarProperty Name="kategory" ColumnName="kategory" />
+                <ScalarProperty Name="dataex" ColumnName="dataex" />
+                <ScalarProperty Name="datetimeid" ColumnName="datetimeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="voditModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
